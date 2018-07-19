@@ -13,9 +13,9 @@ const app = express();
     const twitter = new Twitter(config);
 
 	
-app.get("/", function(req, res) {
-	res.send("hello world");
-});
+//app.get("/", function(req, res) {
+//	res.send("hello world");
+//});
 
 app.get("/searchtweets", function(req, res) {
 //res.send("hello world");
@@ -35,6 +35,21 @@ app.get("/searchtweets", function(req, res) {
 //res.send("hello world");
 
 });
+
+
+if(process.env.NODE_ENV === 'production') {
+	// express will serve up production assets
+	//like main.js or main.css
+	app.use(express.static('client/build'));
+
+	//express will serve up index.html file if it doesnt recognize route
+	const path = require('path');
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	});
+
+
+}
 
 //heroku expects us to listen to incoming http traffic on port
 //exposes very specific post
