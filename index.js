@@ -8,7 +8,7 @@ const app = express();
 	const Twitter = require('twitter-node-client').Twitter;
 
 	//Get this data from your twitter apps dashboard
-	const config = require('./config/dev');
+	const config = require('./config/keys');
 
     const twitter = new Twitter(config);
 
