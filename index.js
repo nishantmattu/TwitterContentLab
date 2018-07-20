@@ -26,11 +26,15 @@ app.get("/searchtweets", function(req, res) {
     	console.log('ERROR [%s]', err);
 	};
 	const success = function (data) {
+		//console.log(data);
     	res.send(data);
 
 	};
+
+
+	console.log("incoming a: " + req.query.hashtag);
 //twitter.getUser({ user_id: "nishantmattu" , screen_name: "nishantmattu"}, error, success);
- twitter.getSearch({'q':'#haiku #poetry', 'count': 10}, error, success);
+ twitter.getSearch({'q': req.query.hashtag, 'count': req.query.count, 'result_type': 'recent'}, error, success);
 
 //res.send("hello world");
 

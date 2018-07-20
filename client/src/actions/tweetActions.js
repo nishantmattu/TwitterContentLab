@@ -1,32 +1,53 @@
 import axios from "axios";
 
-export const sortTweets = (method) => {
+export const sortTweets = (method, param, tweets) => {
 
-//?
-	console.log(method);
+//this should sort the tweets based on the method payload
+	console.log("sort tweets: " + param + method);
+	console.log("sorting here");
+
+	if(tweets.length === 0) {
+		method = "None";
+	} else {
+		tweets.sort(propComparator(param));
+	}
+
 
 	return {
 		type: "SORT_TWEETS",
-		payload: method
+		payload: {
+			method: method,
+			tweets: tweets
+		}
 	}
 
 }
 
 
-// export const fetchTweets = (res) => {
+const propComparator = (propName) =>
+  (b, a) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1
 
-// 	console.log("fetch tweeets " + res);
 
-// 	return {
-// 		type: "FETCH_TWEETS",
-// 		payload: res.data
-// 	}
+export const fetchTweets = (hashtags, count) => async dispatch => {
 
-// }
+	let hashtagStr = "";
 
-export const fetchTweets = () => async dispatch => {
-	
-			const res = await axios.get('/searchtweets');
+	console.log(hashtags);
+	console.log(count);
+
+	for(let a of hashtags.keys()) {
+		console.log("h" + a);
+		hashtagStr += a + " ";
+	}
+
+	console.log(hashtagStr);
+
+			const res = await axios.get('/searchtweets', {
+				params : {
+					hashtag: hashtagStr,
+					count: count
+				}
+			});
 
 			dispatch({type: "FETCH_TWEETS",payload: res.data});
 }

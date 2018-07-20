@@ -4,12 +4,12 @@ import thunk from "redux-thunk";
 //import promise from "redux-promise-middleware";
 
 import tweetReducers from "./reducers/tweetReducers";
-import tempReducers from "./reducers/tempReducers";
+import hashtagReducers from "./reducers/hashtagReducers";
 
 export default createStore(
     combineReducers({
         tweetReducers,
-        tempReducers
+        hashtagReducers
     }),
     {},
     applyMiddleware(thunk)

@@ -4,15 +4,15 @@ import {sortTweets} from "../actions/tweetActions";
 import {connect} from "react-redux";
 
 class SortSelections extends Component {
-
+//<SortSelector orderType={"None"} setOrder={() => this.props.sortTweets("None", "", this.props.tweets)}/>
 	render() {
 		return (
 
 			<div>
 				<h3>Sort By:</h3>
-				<SortSelector orderType={"Favorites"} setOrder={() => this.props.sortTweets("Favorites")}/>
-				<SortSelector orderType={"Retweets"} setOrder={() => this.props.sortTweets("Retweets")}/>
-				<SortSelector orderType={"None"} setOrder={() => this.props.sortTweets("None")}/>
+				<SortSelector orderType={"Favorites"} setOrder={() => this.props.sortTweets("Favorites", "favorite_count", this.props.tweets)}/>
+				<SortSelector orderType={"Retweets"} setOrder={() => this.props.sortTweets("Retweets", "retweet_count", this.props.tweets)}/>
+				
 				<p>Current Order: {this.props.order}</p>
 			</div>
 
@@ -23,7 +23,8 @@ class SortSelections extends Component {
 const mapStateToProps = (state) => {
 	console.log("state order: " + state.tweetReducers.order);
 	return {
-		order: state.tweetReducers.order
+		order: state.tweetReducers.order,
+		tweets: state.tweetReducers.tweets
 	};
 };
 
