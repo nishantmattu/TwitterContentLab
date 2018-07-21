@@ -16,22 +16,16 @@ class HashtagsInput extends Component {
 
 	onFormSubmit(e) {
 		e.preventDefault();
-		//console.log(e);
-		//console.log("submitted tag: " + e.target.value);
 
 
 		this.props.addHashtag(this.props.hashtagInput);
-	//	this.props.fetchTweets(this.props.hashtagInput);
-		//this.props.onHashtagInputChange("");
+
 		this.props.onHashtagInputChange("");
 	}
 
 
 	onHashTagChange(e) {
 		e.preventDefault();
-		//console.log(e);
-		//console.log("submitted tag: " + e.target.value);
-
 
 		this.props.onHashtagInputChange(e.target.value);
 
@@ -39,9 +33,6 @@ class HashtagsInput extends Component {
 
 	onCountChange(e) {
 		e.preventDefault();
-		//console.log(e);
-		//console.log("submitted tag: " + e.target.value);
-
 
 		this.props.setCount(e.target.value);
 
@@ -53,20 +44,23 @@ class HashtagsInput extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="hashtagsInput">
 				<h3>Enter Hashtag (#):</h3>
 				<form onSubmit={this.onFormSubmit}>
 
 					Hashtag: <input type="input" placeholder="ex: #haiku" value={this.props.hashtagInput} onChange={this.onHashTagChange}/>
-					Count: <input type="input" placeholder="0"  onFocus={this.handleFocus} onChange={this.onCountChange} value={this.props.count}/>
-
 					<input type="submit" value="Add"  />
+
+
+					Count: <input type="input" placeholder="0"  onFocus={this.handleFocus} onChange={this.onCountChange} value={this.props.count}/>
+					<button onClick={() => this.props.fetchTweets(this.props.hashtags, this.props.count)}>Search</button>
+					
 					
 
 				</form>
 				
 
-				<button onClick={() => this.props.fetchTweets(this.props.hashtags, this.props.count)}>Search</button>
+				
 
 			</div>
 		);

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
+
 import {connect} from "react-redux";
 import SearchPreferences from "./SearchPreferences";
 import TweetsFeed from "./TweetsFeed";
-//import './App.css';
+
 
 class App extends Component {
   render() {

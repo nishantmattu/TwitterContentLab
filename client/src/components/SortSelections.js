@@ -8,7 +8,7 @@ class SortSelections extends Component {
 	render() {
 		return (
 
-			<div>
+			<div className="sortSelections">
 				<h3>Sort By:</h3>
 				<SortSelector orderType={"Favorites"} setOrder={() => this.props.sortTweets("Favorites", "favorite_count", this.props.tweets)}/>
 				<SortSelector orderType={"Retweets"} setOrder={() => this.props.sortTweets("Retweets", "retweet_count", this.props.tweets)}/>
@@ -27,17 +27,5 @@ const mapStateToProps = (state) => {
 		tweets: state.tweetReducers.tweets
 	};
 };
-
-// const mapDispatchToProps = (dispatch) => {
-
-// 	return {
-// 		sortTweets: (method) => {
-// 			dispatch(sortTweets(method));
-// 		}
-// 	};
-
-// };
-
-
 
 export default connect(mapStateToProps, {sortTweets})(SortSelections);

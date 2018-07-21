@@ -11,7 +11,6 @@ class TweetFeed extends Component {
 
 	displayTweets() {
 
-		// let a = [1,2,3];
 		const tweets = this.props.tweets;
 
 		return tweets.map(function(tweet) {
@@ -32,9 +31,6 @@ class TweetFeed extends Component {
 		);
 
 	}
-
-
-
 
 }
 
