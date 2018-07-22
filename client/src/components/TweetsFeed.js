@@ -13,6 +13,9 @@ class TweetFeed extends Component {
 
 		const tweets = this.props.tweets;
 
+		if(tweets === undefined) {
+			return;
+		}
 		return tweets.map(function(tweet) {
 			return (
 				<Tweet key={tweet.id} text={tweet.text} favorites={tweet.favorite_count} retweets={tweet.retweet_count}/>
@@ -26,7 +29,7 @@ class TweetFeed extends Component {
 		return (
 			<div>
 
-				<ul>{this.displayTweets()}</ul>
+				<ul className="tweetFeed">{this.displayTweets()}</ul>
 			</div>
 		);
 

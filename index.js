@@ -24,6 +24,7 @@ app.get("/searchtweets", function(req, res) {
 
 	const error = function (err, response, body) {
     	console.log('ERROR [%s]', err);
+    	res.send(err);
 	};
 	const success = function (data) {
 		//console.log(data);

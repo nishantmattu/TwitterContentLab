@@ -35,13 +35,14 @@ export const addHashtag = (data) => {
 
 //remove hashtag
 
-export const removeHashtag = (data) => {
+export const removeHashtag = (tag) => {
 
-	console.log("removed hashtag action: " + data);
+	console.log("removed hashtag action: " + tag);
 
+	//hashtags.delete(tag);
 	return ({
 		type: "REMOVE_HASHTAG",
-		payload: data
+		payload: tag
 
 	});
 }

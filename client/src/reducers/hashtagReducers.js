@@ -7,26 +7,37 @@ export default function hashtagReducers(state = {
 	switch(action.type) {
 
 		case "ADD_HASHTAG":
+
+			if(action.payload.length === 0) {
+				return state;
+			}
 			state = {
 
 				...state,
 				hashtags: state.hashtags.add(action.payload)
 			}
 
-			console.log("hashtags SET after add: ", ...state.hashtags);
+			console.log("hashtags SET after add: ", state.hashtags);
 
 		break;
 
 
 		case "REMOVE_HASHTAG":
-			state = {
+
+			//let newState = state;
+
+			let newState = {
 
 				...state,
-				hashtags: state.hashtags.delete(action.payload)
+				hashtags: new Set([...state.hashtags])
+				//hashtags: (state.hashtags.delete(action.payload)) ? state.hashtags : state.hashtags
 			}
-			console.log("hashtags SET after remove: ", ...state.hashtags);
+			newState.hashtags.delete(action.payload);
+			console.log("hashtags SET after remove: ", newState.hashtags);
 
-		break;
+
+			return newState;
+		//break;
 
 		case "ON_HASHTAG_INPUT_CHANGE": 
 

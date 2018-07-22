@@ -9,8 +9,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      		
         	<SearchPreferences />
-        	<TweetsFeed tweets={this.props.tweets} order={this.props.search}/>
+        	<TweetsFeed  tweets={this.props.tweets} order={this.props.search}/>
       </div>
     );
   }

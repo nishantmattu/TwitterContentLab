@@ -32,7 +32,11 @@ export const fetchTweets = (hashtags, count) => async dispatch => {
 
 	let hashtagStr = "";
 
-	console.log(hashtags);
+	if(count === 0 || hashtags.keys().length === 0) {
+		return;
+	}
+
+	console.log(hashtags.keys());
 	console.log(count);
 
 	for(let a of hashtags.keys()) {

@@ -1,14 +1,106 @@
+html {
+    height:100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #232b2b;
+  height: 100%;
 }
+
+
+
+
+.container {
+	padding-top: 10px;
+	 background-color: #232b2b;
+	  display: flex;
+	  flex-direction: column;
+	  min-height: 100vh;
+	  /*background-image: url("twitter_bird.png");
+	  background-size: contain;
+	   background-repeat: no-repeat;
+	   background-position: center; 
+ background-attachment: fixed;*/
+
+}
+
 
 
 .hashtagsInput {
-border: 1px solid black;
+
 }
 
 .sortSelections {
-border: 1px solid green;
+
 }
+
+.tweet {
+	border: 1px solid gray;
+	margin: 5px 0;
+	border-radius: 5px;
+	background-color: white;
+	font-family: helvetica neue;
+}
+
+.tweet:hover {
+	background-color: #1da1f2;
+}
+
+.header {
+
+	text-align: center;
+	color: white;
+	font-size: 60px;
+
+	background-color: #1da1f2;
+	height: 200px;
+	
+}
+
+.headerText {
+	padding-top: 50px;
+
+}
+
+ul {
+	list-style-type: none;
+}
+
+.block {
+	display: inline-block;
+}
+
+.hashtag {
+	
+	background-color: #e6ffff;
+	border-radius: 5px;
+	padding-left: 5px;
+}
+
+.deleteHashtag {
+	
+	border-radius: 5px;
+	opacity: 0.5;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 10px;
+}
+.deleteHashtag:hover { 
+	background-color: #e0e0eb;
+	cursor: pointer;
+	font-weight: bold;
+    font-size: 10px;
+    opacity: 1;
+}
+
+input {
+	border-radius: 5px;
+}
+
+.countInput {
+	width: 40px;
+}
+
