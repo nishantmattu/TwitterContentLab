@@ -55,3 +55,21 @@ export const fetchTweets = (hashtags, count) => async dispatch => {
 
 			dispatch({type: "FETCH_TWEETS",payload: res.data});
 }
+
+export const fetchTweet = (id) => async dispatch => {
+
+	let hashtagStr = "";
+
+
+
+	console.log("id: " + id);
+
+
+			const res = await axios.get('/searchtweet', {
+				params : {
+					id: id
+				}
+			});
+
+			dispatch({type: "FETCH_TWEET",payload: res.data});
+}

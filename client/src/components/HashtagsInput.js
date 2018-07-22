@@ -61,18 +61,20 @@ class HashtagsInput extends Component {
 				<h3>Enter Hashtag (#):</h3>
 				<form onSubmit={this.onFormSubmit}>
 
-					Add Hashtag: <input type="input" placeholder="ex: #haiku" value={this.props.hashtagInput} onChange={this.onHashTagChange}/>
+					Hashtag: <input className="hashtagInput" type="input" placeholder="ex: #haiku" value={this.props.hashtagInput} onChange={this.onHashTagChange}/>
 					<input type="submit" value="Add"  />
 
 
 					# of Tweets: <input className="countInput" type="input" placeholder="0"  onFocus={this.handleFocus} onChange={this.onCountChange} value={this.props.count}/>
 					
-					
+					<button type="button" className="btn btn-primary" onClick={() => this.props.fetchTweets(this.props.hashtags, this.props.count)}>Search</button>
+
 
 				</form>
-					<button className="btn btn-primary" onClick={() => this.props.fetchTweets(this.props.hashtags, this.props.count)}>Search</button>
-
+					
 				<ul>{this.displayHashtags()}
+
+
 				</ul>
 				
 

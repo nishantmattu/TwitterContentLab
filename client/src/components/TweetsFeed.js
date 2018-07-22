@@ -17,8 +17,9 @@ class TweetFeed extends Component {
 			return;
 		}
 		return tweets.map(function(tweet) {
+
 			return (
-				<Tweet key={tweet.id} text={tweet.text} favorites={tweet.favorite_count} retweets={tweet.retweet_count}/>
+				<Tweet key={tweet.id} user={tweet.user.screen_name} idStr={tweet.id_str} text={tweet.text} favorites={tweet.favorite_count} retweets={tweet.retweet_count} />
 			);
 		});
 

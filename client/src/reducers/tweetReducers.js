@@ -1,7 +1,8 @@
 export default function tweetReducers(state = {
 	order: "None",
 	tweets: [],
-	search: false
+	search: false,
+	clickedTweet: {}
 }, action) {
 
 	switch(action.type) {
@@ -28,6 +29,24 @@ export default function tweetReducers(state = {
 			tweets: action.payload.statuses,
 			search: action.payload
 		}
+
+
+
+		console.log("search? " + state.search);
+
+		break;
+
+		case "FETCH_TWEET":
+		//this should sort the tweets
+		console.log("FETCH_TWEET");
+		console.log("fetched tweet: " + action.payload);
+
+		state = {
+			...state,
+			clickedTweet: action.payload
+		}
+
+		
 
 		console.log("search? " + state.search);
 

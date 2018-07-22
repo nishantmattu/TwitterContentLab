@@ -17,6 +17,35 @@ const app = express();
 //	res.send("hello world");
 //});
 
+//twitter.getTweet({ id: '1111111111'}, error, success);
+
+
+app.get("/searchtweet", function(req, res) {
+//res.send("hello world");
+	//
+//	twitter.getHomeTimeline({ count: '1'}, error, success);
+
+	const error = function (err, response, body) {
+    	console.log('ERROR [%s]', err);
+    	console.log("RESPONSE!!!! " + response);
+    	console.log("BODY!!!! " +body);
+    	res.send(err);
+	};
+	const success = function (data) {
+		//console.log(data);
+    	res.send(data);
+
+	};
+
+
+	console.log("search tweet route a: " + req.query.id);
+//twitter.getUser({ user_id: "nishantmattu" , screen_name: "nishantmattu"}, error, success);
+ twitter.getTweet({ id: req.query.id}, error, success);
+//res.send("hello world");
+
+});
+
+
 app.get("/searchtweets", function(req, res) {
 //res.send("hello world");
 	//
@@ -33,7 +62,7 @@ app.get("/searchtweets", function(req, res) {
 	};
 
 
-	console.log("incoming a: " + req.query.hashtag);
+	console.log("search tweets route a: " + req.query.hashtag);
 //twitter.getUser({ user_id: "nishantmattu" , screen_name: "nishantmattu"}, error, success);
  twitter.getSearch({'q': req.query.hashtag, 'count': req.query.count, 'result_type': 'recent'}, error, success);
 
