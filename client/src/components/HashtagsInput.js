@@ -1,8 +1,10 @@
 import React, {Component} from "react";
-import {fetchTweets} from "../actions/tweetActions";
+import {fetchTweets, resetOrder, sortTweets} from "../actions/tweetActions";
 import {onHashtagInputChange, addHashtag, setCount, removeHashtag} from "../actions/hashtagActions";
 import {connect} from "react-redux";
+import SortSelections from "./SortSelections";
 
+//provides structure for user inputs
 class HashtagsInput extends Component {
 
 	constructor(props) {
@@ -12,10 +14,16 @@ class HashtagsInput extends Component {
 		this.onHashTagChange = this.onHashTagChange.bind(this);
 		this.onCountChange = this.onCountChange.bind(this);
 		this.displayHashtags = this.displayHashtags.bind(this);
+		this.searchTweets = this.searchTweets.bind(this);
 	}
 
 
+
 	onFormSubmit(e) {
+		//submit form
+		//adds hashtag input to set of hashtags
+		//refreshes hashtag input field
+
 		e.preventDefault();
 
 
@@ -26,6 +34,9 @@ class HashtagsInput extends Component {
 
 
 	onHashTagChange(e) {
+		//called when hashtag field input changes
+		//updates part of state that tracks hashtag field input
+
 		e.preventDefault();
 
 		this.props.onHashtagInputChange(e.target.value);
@@ -33,6 +44,9 @@ class HashtagsInput extends Component {
 	}
 
 	onCountChange(e) {
+		//called when count field input changes
+		//updates part of state that tracks desired number of tweets
+
 		e.preventDefault();
 
 		this.props.setCount(e.target.value);
@@ -40,12 +54,17 @@ class HashtagsInput extends Component {
 	}
 
 	handleFocus(e) {
+		//focus function for add button for hashtag add button input
 		e.target.select();
 	}
 
 	displayHashtags() {
-
+		//function that displays entered hashtags in a hashtag block type of structure
+		//shows hashtags that state keeps track of
+		//provides additional functionality for each hashtag structure
+		//can delete hashtags by pressing 'x' displayed on tag
 		const tagList = [...this.props.hashtags];
+
 
 		return tagList.map((tag) => {
 			return (
@@ -55,31 +74,34 @@ class HashtagsInput extends Component {
 
 	}
 
+	searchTweets(e) {
+		//called when user desires to retrieve tweets after setting inputs
+		//calls fetch tweet action with desired hashtags and number of tweets
+		this.props.fetchTweets(this.props.hashtags, this.props.count);
+
+
+		
+
+		//this.props.resetOrder();
+	}
+
 	render() {
 		return (
 			<div className="hashtagsInput">
-				<h3>Enter Hashtag (#):</h3>
 				<form onSubmit={this.onFormSubmit}>
 
 					Hashtag: <input className="hashtagInput" type="input" placeholder="ex: #haiku" value={this.props.hashtagInput} onChange={this.onHashTagChange}/>
-					<input type="submit" value="Add"  />
-
+					<input className="addInput" type="submit" value="Add"  />
 
 					# of Tweets: <input className="countInput" type="input" placeholder="0"  onFocus={this.handleFocus} onChange={this.onCountChange} value={this.props.count}/>
-					
-					<button type="button" className="btn btn-primary" onClick={() => this.props.fetchTweets(this.props.hashtags, this.props.count)}>Search</button>
-
+					<SortSelections />
+					<button type="button" className="btn btn-primary" onClick={this.searchTweets}>Search</button>
 
 				</form>
 					
 				<ul>{this.displayHashtags()}
-
-
 				</ul>
 				
-
-				
-
 			</div>
 		);
 	}
@@ -88,23 +110,16 @@ class HashtagsInput extends Component {
 
 }
 
-// const mapDispatchToProps =  (dispatch) =>  {
-// 	return {
-// 		fetch: () => async (dispatch) => {
-// 			const res = await axios.get('/searchtweets');
-// 			dispatch(fetchTweets(res.data));
-// 		}
-// 	};
 
-// };
 
 const mapStateToProps = (state) => {
-	console.log("test");
 	return {
 		hashtagInput: state.hashtagReducers.hashtagInput,
 		hashtags: state.hashtagReducers.hashtags,
-		count: state.hashtagReducers.count
+		order: state.tweetReducers.order,
+		count: state.hashtagReducers.count, 
+		tweets: state.tweetReducers.tweets
 	};
 }
 
-export default connect(mapStateToProps, {fetchTweets, setCount, onHashtagInputChange, addHashtag, removeHashtag})(HashtagsInput);
+export default connect(mapStateToProps, {fetchTweets, sortTweets, setCount, onHashtagInputChange, addHashtag, removeHashtag, resetOrder})(HashtagsInput);

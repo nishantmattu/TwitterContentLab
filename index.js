@@ -21,9 +21,6 @@ const app = express();
 
 
 app.get("/searchtweet", function(req, res) {
-//res.send("hello world");
-	//
-//	twitter.getHomeTimeline({ count: '1'}, error, success);
 
 	const error = function (err, response, body) {
     	console.log('ERROR [%s]', err);
@@ -32,41 +29,33 @@ app.get("/searchtweet", function(req, res) {
     	res.send(err);
 	};
 	const success = function (data) {
-		//console.log(data);
+
     	res.send(data);
 
 	};
 
-
 	console.log("search tweet route a: " + req.query.id);
-//twitter.getUser({ user_id: "nishantmattu" , screen_name: "nishantmattu"}, error, success);
+
  twitter.getTweet({ id: req.query.id}, error, success);
-//res.send("hello world");
 
 });
 
 
 app.get("/searchtweets", function(req, res) {
-//res.send("hello world");
-	//
-//	twitter.getHomeTimeline({ count: '1'}, error, success);
 
 	const error = function (err, response, body) {
     	console.log('ERROR [%s]', err);
     	res.send(err);
 	};
 	const success = function (data) {
-		//console.log(data);
+
     	res.send(data);
 
 	};
 
-
 	console.log("search tweets route a: " + req.query.hashtag);
-//twitter.getUser({ user_id: "nishantmattu" , screen_name: "nishantmattu"}, error, success);
- twitter.getSearch({'q': req.query.hashtag, 'count': req.query.count, 'result_type': 'recent'}, error, success);
 
-//res.send("hello world");
+ twitter.getSearch({'q': req.query.hashtag, 'count': req.query.count, 'result_type': 'recent'}, error, success);
 
 });
 
@@ -88,7 +77,6 @@ if(process.env.NODE_ENV === 'production') {
 //heroku expects us to listen to incoming http traffic on port
 //exposes very specific post
 //heroku can inject env var
-//var set is underlying runtime that node is on top of
 const PORT = process.env.PORT || 5000;
 
 

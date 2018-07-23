@@ -1,11 +1,7 @@
 
 
-//enter hashtag
-
+//action to update hashtag form field as user inputs hashtag
 export const onHashtagInputChange = (data) => {
-
-	//console.log("current text in input: " + data);
-
 
 	return ({
 		type: "ON_HASHTAG_INPUT_CHANGE",
@@ -17,11 +13,8 @@ export const onHashtagInputChange = (data) => {
 }
 
 
-//add hashtag
-
+//action to add hashtag to set of desired hashtags
 export const addHashtag = (data) => {
-
-	console.log("added hashtag action: " + data);
 
 	return ({
 		type: "ADD_HASHTAG",
@@ -33,13 +26,9 @@ export const addHashtag = (data) => {
 
 
 
-//remove hashtag
-
+//action to remove hashtag to set of desired hashtags
 export const removeHashtag = (tag) => {
 
-	console.log("removed hashtag action: " + tag);
-
-	//hashtags.delete(tag);
 	return ({
 		type: "REMOVE_HASHTAG",
 		payload: tag
@@ -47,6 +36,7 @@ export const removeHashtag = (tag) => {
 	});
 }
 
+//action to track count for number of desired tweet results
 export const setCount = (count) => {
 
 	return {
@@ -57,5 +47,3 @@ export const setCount = (count) => {
 }
 
 
-
-//combine hashtags to query?

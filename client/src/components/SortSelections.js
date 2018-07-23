@@ -1,44 +1,46 @@
 import React, {Component} from "react";
 import SortSelector from "./SortSelector";
-import {sortTweets} from "../actions/tweetActions";
+import {sortTweets, setOrder} from "../actions/tweetActions";
 import {connect} from "react-redux";
 
+//provides structure for sort selection
 class SortSelections extends Component {
-//<SortSelector orderType={"None"} setOrder={() => this.props.sortTweets("None", "", this.props.tweets)}/>
+
+	//displays sort selection as a drop down menu
+	//currently two options: sort by favorites count or retweets count
+	//when an option is clicked, it sets desired order in state
 	render() {
 		return (
 
 			<div className="sortSelections">
-				<h3>Sort By:</h3>
-
-
 			<div className="dropdown">
 			  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Options:
+			  {this.props.order === "favorite_count" ? "Favorites" : this.props.order === "retweet_count" ? "Retweets" : "Order"}
+
 			  </button>
 			  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			    <a className="dropdown-item" href="#"><SortSelector orderType={"Favorites"} setOrder={() => this.props.sortTweets("Favorites", "favorite_count", this.props.tweets)}/>
-							</a>
-			    <a className="dropdown-item" href="#"><SortSelector orderType={"Retweets"} setOrder={() => this.props.sortTweets("Retweets", "retweet_count", this.props.tweets)}/>
-							</a>
+			    <div className="dropdown-item" ><SortSelector orderType={"Favorites"} orderParam={"favorite_count"} setOrder={() => this.props.setOrder("favorite_count")}/>
+							</div>
+			    <div className="dropdown-item" ><SortSelector orderType={"Retweets"} orderParam={"retweet_count"} setOrder={() => this.props.setOrder("retweet_count")}/>
+							</div>
 			    
 			  </div>
 			</div>
 
 				
-				<p>Current Order: {this.props.order}</p>
+				
 			</div>
 
 		);
 	}
 }
+//<p>Current Order: {this.props.order}</p>
 
 const mapStateToProps = (state) => {
-	console.log("state order: " + state.tweetReducers.order);
 	return {
 		order: state.tweetReducers.order,
 		tweets: state.tweetReducers.tweets
 	};
 };
 
-export default connect(mapStateToProps, {sortTweets})(SortSelections);
+export default connect(mapStateToProps, {sortTweets, setOrder})(SortSelections);

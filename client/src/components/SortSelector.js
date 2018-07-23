@@ -1,11 +1,12 @@
 import React from "react";
 
-//You do not use the keyword “this”.
-// Since it’s not a class you don’t have to reference the component itself.
+//provides functionality for a single sort selection option
 const SortSelector = (props) => {
 
+//sets preferred order when selected by user
+
 	return (
-		<div onClick={() => props.setOrder()}>
+		<div className="orderSelector" onClick={() => props.setOrder(props.orderParam)}>
 			{props.orderType}
 		</div>
 	);

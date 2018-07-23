@@ -2,10 +2,11 @@ import React, {Component} from "react";
 import 'font-awesome/css/font-awesome.min.css';
 
 
-
+//provides structure for the layout of an individual tweet
 const Tweet = (props) => {
 
-
+//should display tweet text, favorite count, and retweet count, along with icons
+//opens tweet in new window when selected by user
 		return (
 				<li>
 				
@@ -20,7 +21,6 @@ const Tweet = (props) => {
 				</li>
 			
 		);
-	
 
 };
 export default Tweet;

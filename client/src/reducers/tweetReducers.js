@@ -8,21 +8,20 @@ export default function tweetReducers(state = {
 	switch(action.type) {
 
 		case "SORT_TWEETS":
-		console.log("SORT_TWEETS");
+		//sort tweets reducer
+		//changes state of tweets, sorts based on order preference
 
 		state = {
 			...state,
 			order: action.payload.method,
 			tweets: action.payload.tweets
 		}
-		//console.log("state order is now: " + state.order);
 
 		break;
 
 		case "FETCH_TWEETS":
-		//this should sort the tweets
-		console.log("FETCH_TWEETS");
-		console.log(action.payload);
+		//fetch tweets reducer
+		//adds retrieved tweets to state
 
 		state = {
 			...state,
@@ -30,29 +29,43 @@ export default function tweetReducers(state = {
 			search: action.payload
 		}
 
-
-
-		console.log("search? " + state.search);
-
 		break;
 
 		case "FETCH_TWEET":
-		//this should sort the tweets
-		console.log("FETCH_TWEET");
-		console.log("fetched tweet: " + action.payload);
+		//fetch tweet reducer
+		//provides info abouot clickedTweet
+		//currently not in use 
 
 		state = {
 			...state,
 			clickedTweet: action.payload
 		}
 
-		
+		break;
 
-		console.log("search? " + state.search);
+		case "SET_ORDER":
+		//fetch tweet reducer
+		//provides info abouot clickedTweet
+		//currently not in use 
+
+		state = {
+			...state,
+			order: action.payload
+		}
 
 		break;
 
+		case "RESET_ORDER":
+		//fetch tweet reducer
+		//provides info abouot clickedTweet
+		//currently not in use 
 
+		state = {
+			...state,
+			order: action.payload
+		}
+
+		break;
 
 		default:
 		break;
@@ -64,4 +77,3 @@ export default function tweetReducers(state = {
 
 }
 
-//export default tweetReducers;

@@ -1,34 +1,49 @@
 import axios from "axios";
 
-export const sortTweets = (method, param, tweets) => {
 
-//this should sort the tweets based on the method payload
-	console.log("sort tweets: " + param + method);
-	console.log("sorting here");
+//action to sort tweets received
+export const sortTweets = (param, tweets) => {
+
 
 	if(tweets.length === 0) {
-		method = "None";
+
+		param = "None";
 	} else {
+
 		tweets.sort(propComparator(param));
 	}
-
 
 	return {
 		type: "SORT_TWEETS",
 		payload: {
-			method: method,
+			method: param,
 			tweets: tweets
 		}
 	}
 
 }
 
+//action to set current sorted order after searching
+export const setOrder = (order) => {
 
-const propComparator = (propName) =>
-  (b, a) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1
+	return {
+		type: "SET_ORDER",
+		payload: order
+		}
+}
 
+//action to reset current sorted order after searching
+export const resetOrder = () => {
 
+	return {
+		type: "RESET_ORDER",
+		payload: "None"
+		}
+}
+
+//action to send request to twitter api and retrieve tweets based on desired hashtags and number of tweets
 export const fetchTweets = (hashtags, count) => async dispatch => {
+
 
 	let hashtagStr = "";
 
@@ -36,15 +51,11 @@ export const fetchTweets = (hashtags, count) => async dispatch => {
 		return;
 	}
 
-	console.log(hashtags.keys());
-	console.log(count);
-
+	//build hashtags input for query
+	//twitter-node-client performs conversions as well
 	for(let a of hashtags.keys()) {
-		console.log("h" + a);
 		hashtagStr += a + " ";
 	}
-
-	console.log(hashtagStr);
 
 			const res = await axios.get('/searchtweets', {
 				params : {
@@ -53,17 +64,11 @@ export const fetchTweets = (hashtags, count) => async dispatch => {
 				}
 			});
 
-			dispatch({type: "FETCH_TWEETS",payload: res.data});
+			dispatch({type: "FETCH_TWEETS", payload: res.data});
 }
 
+//action to send request to twitter api and retrieve tweet based on id_str property...currently not in use
 export const fetchTweet = (id) => async dispatch => {
-
-	let hashtagStr = "";
-
-
-
-	console.log("id: " + id);
-
 
 			const res = await axios.get('/searchtweet', {
 				params : {
@@ -73,3 +78,7 @@ export const fetchTweet = (id) => async dispatch => {
 
 			dispatch({type: "FETCH_TWEET",payload: res.data});
 }
+
+//function to compare two tweets by given property name
+const propComparator = (propName) =>
+  (b, a) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1
