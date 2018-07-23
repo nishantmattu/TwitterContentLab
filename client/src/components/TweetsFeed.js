@@ -10,21 +10,14 @@ class TweetFeed extends Component {
 		this.displayTweets = this.displayTweets.bind(this);
 	}
 
-
-
 	//display tweets retrieved using list of Tweet components
 	displayTweets() {
-
-
 
 		if(this.props.tweets === undefined) {
 			return;
 		}
 
 		let tweets = this.props.tweets;
-
-
-
 
 		//dont sort through render, should be pure
 		//sort tweets based on desired sorting order
@@ -42,7 +35,7 @@ class TweetFeed extends Component {
 
 //displays list of retrieved tweets
 	render() {
-
+		
 		return (
 			<div>
 
@@ -56,8 +49,6 @@ class TweetFeed extends Component {
 
 const propComparator = (propName) =>
   (b, a) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1
-
-
 
 const mapStateToProps = (state) => {
 	return {

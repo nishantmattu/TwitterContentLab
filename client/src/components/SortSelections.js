@@ -15,7 +15,7 @@ class SortSelections extends Component {
 			<div className="sortSelections">
 			<div className="dropdown">
 			  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  {this.props.order === "favorite_count" ? "Favorites" : this.props.order === "retweet_count" ? "Retweets" : "Order"}
+			  {this.props.order === "favorite_count" ? "Favorites" : this.props.order === "retweet_count" ? "Retweets" : "Sort"}
 
 			  </button>
 			  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
